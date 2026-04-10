@@ -1,0 +1,30 @@
+run_name: "winter_mcr_transfer_wavlm_ft"
+model_type: "wavlm_ft"
+seed: 42
+
+data_root: "data/cleaned_ravdess/raw"
+sample_rate: 16000
+max_seconds: 5.0     # full clip is fine; 5 sec is safe for batching
+
+train_split: 0.80
+val_split: 0.10
+test_split: 0.10
+batch_size: 4        # IMPORTANT: WavLM is heavy. Start small on 1660 Super.
+num_workers: 0
+
+# WavLM settings
+wavlm_model_name: "microsoft/wavlm-base"
+wavlm_dropout: 0.1
+
+# Fine-tuning schedule
+epochs: 10
+unfreeze_epoch: 3
+
+# Optimizer (separate LRs)
+head_lr: 0.0005
+encoder_lr: 0.00005
+weight_decay: 0.0001
+
+device: "auto"
+early_stopping_patience: 3
+save_every_epochs: 1
