@@ -15,7 +15,16 @@ from pydub import AudioSegment
 # =========================
 # CONFIG — update if needed
 # =========================
-CHECKPOINT_PATH = Path(r"C:\Users\Abdullah\Desktop\ser_cnn_pipeline\ser_cnn_pipeline\outputs\winter_mcr_transfer_wavlm_ft\checkpoints\best.pt")
+from pathlib import Path
+import os
+
+BASE_DIR = Path(__file__).resolve().parent
+CHECKPOINT_PATH = Path(
+    os.getenv(
+        "CHECKPOINT_PATH",
+        BASE_DIR / "checkpoints" / "best.pt"
+    )
+)
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 

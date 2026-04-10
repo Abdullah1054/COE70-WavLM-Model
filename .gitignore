@@ -21,3 +21,6 @@ build/
 *.pt
 *.bin
 *.safetensors
+
+!ser_api/checkpoints/
+!ser_api/checkpoints/best.pt
